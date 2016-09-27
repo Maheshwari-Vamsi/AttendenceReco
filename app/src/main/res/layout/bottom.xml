@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_gravity="bottom" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <ToggleButton android:id="@+id/toggleButton1" android:layout_width="wrap_content" android:layout_height="fill_parent" android:textOn="StopTrain" android:textOff="Train" android:text="Train" android:layout_weight="0.07" />
+        <TextView android:textAppearance="?android:textAppearanceLarge" android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0.71" />
+        <EditText android:id="@+id/editTextId" android:layout_width="wrap_content" android:layout_height="wrap_content" android:hint="ID" android:maxLines="1" android:singleLine="true" android:layout_weight="1.76">
+            <requestFocus />
+        </EditText>
+        <EditText android:id="@+id/editText1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:hint="Name" android:maxLines="1" android:singleLine="true" android:layout_weight="1.76" />
+        <EditText android:id="@+id/editTextSex" android:layout_width="wrap_content" android:layout_height="wrap_content" android:hint="Gender" android:maxLines="1" android:singleLine="true" android:autoText="false" android:layout_weight="1.76" />
+        <EditText android:id="@+id/editTextTel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:hint="Telephone" android:maxLines="1" android:singleLine="true" android:layout_weight="1.76" />
+    </LinearLayout>
+</LinearLayout>
