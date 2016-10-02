@@ -60,8 +60,7 @@ public class ImageGallery
 
   private void requestNewInterstitial()
   {
-    AdapterView localAdRequest = new AdRequest.Builder().addTestDevice("5629AA23086C4D69007CEF9771E8D8B2").build();
-    this.mInterstitialAd.loadAd(localAdRequest);
+
   }
 
   public View makeView()
@@ -78,24 +77,15 @@ public class ImageGallery
     super.onCreate(paramBundle);
     requestWindowFeature(1);
     setContentView(2130903066);
-    this.mInterstitialAd = new InterstitialAd(this);
-    this.mInterstitialAd.setAdUnitId("ca-app-pub-2734229751141383/7603049759");
-    this.mInterstitialAd.setAdListener(new AdListener()
-    {
-      public void onAdClosed()
-      {
-        ImageGallery.this.requestNewInterstitial();
-        ImageGallery.this.finish();
-      }
-    });
-    requestNewInterstitial();
-    this.name = ((TextView)findViewById(2131492949));
-    this.code = ((TextView)findViewById(2131492957));
-    this.sex = ((TextView)findViewById(2131492958));
-    this.tel = ((TextView)findViewById(2131492959));
-    this.buttonDel = ((Button)findViewById(2131492960));
-    this.buttonBack = ((ImageButton)findViewById(2131492956));
-    this.mSwitcher = ((ImageSwitcher)findViewById(2131492955));
+
+ //   requestNewInterstitial();
+    this.name = ((TextView)findViewById(R.id.textView1));
+    this.code = ((TextView)findViewById(R.id.textView2));
+    this.sex = ((TextView)findViewById(R.id.textView3));
+    this.tel = ((TextView)findViewById(R.id.textView4));
+    this.buttonDel = ((Button)findViewById(R.id.buttonDel));
+    this.buttonBack = ((ImageButton)findViewById(R.id.imageButton1));
+    this.mSwitcher = ((ImageSwitcher)findViewById(R.id.switcher));
     this.mSwitcher.setFactory(this);
     this.mSwitcher.setInAnimation(AnimationUtils.loadAnimation(this, 17432576));
     this.mSwitcher.setOutAnimation(AnimationUtils.loadAnimation(this, 17432577));

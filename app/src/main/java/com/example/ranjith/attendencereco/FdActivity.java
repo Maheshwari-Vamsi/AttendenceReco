@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnKeyListener;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -264,7 +265,7 @@ public class FdActivity
       }
     }
     MatOfRect localMatOfRect = new MatOfRect();
-    Rect[] arrayOfRect;
+    Rect[] arrayOfRect = new Rect[0];
     if (this.mDetectorType == 0) {
       if (this.mJavaDetector != null) {
         this.mJavaDetector.detectMultiScale(this.mGray, localMatOfRect, 1.1D, 2, 2, new Size(this.mAbsoluteFaceSize, this.mAbsoluteFaceSize), new Size());
@@ -334,15 +335,15 @@ public class FdActivity
     Log.i("OCVSample::Activity", "called onCreate");
     super.onCreate(paramBundle);
     getWindow().addFlags(128);
-    setContentView(2130903068);
-    this.mOpenCvCameraView = ((Tutorial3View) findViewById(2131492963));
+    setContentView(R.layout.face_detect_surface_view);
+    this.mOpenCvCameraView = ((Tutorial3View) findViewById(R.id.tutorial3_activity_java_surface_view));
     this.mOpenCvCameraView.setCvCameraViewListener(this);
     this.mPath = (getFilesDir() + "/facerecogOCV/");
     this.labelsFile = new labels(this.mPath);
     this.controlInflator = LayoutInflater.from(getBaseContext());
-    addContentView(this.controlInflator.inflate(2130903067, null), new ViewGroup.LayoutParams(-1, -1));
-    this.Iv = ((ImageView) findViewById(2131492964));
-    this.textresult = ((TextView) findViewById(2131492949));
+    addContentView(this.controlInflator.inflate(R.layout.control, null), new ViewGroup.LayoutParams(-1, -1));
+    this.Iv = ((ImageView) findViewById(R.id.imageView1));
+    this.textresult = ((TextView) findViewById(R.id.textView1));
     this.mHandler = new Handler() {
       public void handleMessage(Message paramAnonymousMessage) {
         if (paramAnonymousMessage.obj == "IMG") {
@@ -353,51 +354,48 @@ public class FdActivity
             FdActivity.this.grabarOnclick();
           }
         }
-        do {
-          return;
+   ;
+
           FdActivity.this.textresult.setText(" " + paramAnonymousMessage.obj.toString());
-          FdActivity.this.ivGreen.setVisibility(4);
-          FdActivity.this.ivYellow.setVisibility(4);
-          FdActivity.this.ivRed.setVisibility(4);
-        } while (FdActivity.this.mLikely < 0);
+          FdActivity.this.ivGreen.setVisibility(View.INVISIBLE);
+          FdActivity.this.ivYellow.setVisibility(View.INVISIBLE);
+          FdActivity.this.ivRed.setVisibility(View.VISIBLE);
+
+      while (FdActivity.this.mLikely < 0);
         if (FdActivity.this.mLikely < 50) {
-          FdActivity.this.ivGreen.setVisibility(0);
+          FdActivity.this.ivGreen.setVisibility(View.VISIBLE);
           return;
         }
         if (FdActivity.this.mLikely < 80) {
-          FdActivity.this.ivYellow.setVisibility(0);
+          FdActivity.this.ivYellow.setVisibility(View.VISIBLE);
           return;
         }
-        FdActivity.this.ivRed.setVisibility(0);
+        FdActivity.this.ivRed.setVisibility(View.VISIBLE);
       }
     };
-    this.text = ((EditText) findViewById(2131492951));
-    this.id = ((EditText) findViewById(2131492950));
-    this.sex = ((EditText) findViewById(2131492952));
-    this.tel = ((EditText) findViewById(2131492953));
-    this.buttonCatalog = ((Button) findViewById(2131492961));
-    this.toggleButtonGrabar = ((ToggleButton) findViewById(2131492965));
-    this.buttonSearch = ((ToggleButton) findViewById(2131492962));
-    this.toggleButtonTrain = ((ToggleButton) findViewById(2131492948));
-    this.textState = ((TextView) findViewById(2131492966));
-    this.ivGreen = ((ImageView) findViewById(2131492967));
-    this.ivYellow = ((ImageView) findViewById(2131492968));
-    this.ivRed = ((ImageView) findViewById(2131492969));
-    this.imCamera = ((ImageButton) findViewById(2131492956));
-    this.ivGreen.setVisibility(4);
-    this.ivYellow.setVisibility(4);
-    this.ivRed.setVisibility(4);
-    this.text.setVisibility(4);
-    this.id.setVisibility(4);
-    this.sex.setVisibility(4);
-    this.tel.setVisibility(4);
-    this.textresult.setVisibility(4);
-    AdBuddiz.setPublisherKey("31152fe5-664e-4b9d-8206-d6eb15c4231f");
-    AdBuddiz.cacheAds(this);
-    if (AdBuddiz.isReadyToShowAd(this)) {
-      AdBuddiz.showAd(this);
-    }
-    this.toggleButtonGrabar.setVisibility(4);
+    this.text = ((EditText) findViewById(R.id.editText1));
+    this.id = ((EditText) findViewById(R.id.editTextId));
+    this.sex = ((EditText) findViewById(R.id.editTextSex));
+    this.tel = ((EditText) findViewById(R.id.editTextTel));
+    this.buttonCatalog = ((Button) findViewById(R.id.buttonCat));
+    this.toggleButtonGrabar = ((ToggleButton) findViewById(R.id.toggleButtonGrabar));
+    this.buttonSearch = ((ToggleButton) findViewById(R.id.buttonBuscar));
+    this.toggleButtonTrain = ((ToggleButton) findViewById(R.id.toggleButton1));
+    this.textState = ((TextView) findViewById(R.id.textViewState));
+    this.ivGreen = ((ImageView) findViewById(R.id.imageView3));
+    this.ivYellow = ((ImageView) findViewById(R.id.imageView4));
+    this.ivRed = ((ImageView) findViewById(R.id.imageView2));
+    this.imCamera = ((ImageButton) findViewById(R.id.imageButton1));
+    this.ivGreen.setVisibility(View.INVISIBLE);
+    this.ivYellow.setVisibility(View.INVISIBLE);
+    this.ivRed.setVisibility(View.INVISIBLE);
+    this.text.setVisibility(View.INVISIBLE);
+    this.id.setVisibility(View.INVISIBLE);
+    this.sex.setVisibility(View.INVISIBLE);
+    this.tel.setVisibility(View.INVISIBLE);
+    this.textresult.setVisibility(View.INVISIBLE);
+
+    this.toggleButtonGrabar.setVisibility(View.INVISIBLE);
     this.buttonCatalog.setOnClickListener(new OnClickListener() {
       public void onClick(View paramAnonymousView) {
         Intent localIntent = new Intent(FdActivity.this, ImageGallery.class);
@@ -408,41 +406,41 @@ public class FdActivity
     this.text.setOnKeyListener(new OnKeyListener() {
       public boolean onKey(View paramAnonymousView, int paramAnonymousInt, KeyEvent paramAnonymousKeyEvent) {
         if ((FdActivity.this.text.getText().toString().length() > 0) && (FdActivity.this.toggleButtonTrain.isChecked())) {
-          FdActivity.this.toggleButtonGrabar.setVisibility(0);
+          FdActivity.this.toggleButtonGrabar.setVisibility(View.VISIBLE);
           return false;
         }
-        FdActivity.this.toggleButtonGrabar.setVisibility(4);
+        FdActivity.this.toggleButtonGrabar.setVisibility(View.INVISIBLE);
         return false;
       }
     });
     this.toggleButtonTrain.setOnClickListener(new OnClickListener() {
       public void onClick(View paramAnonymousView) {
         if (FdActivity.this.toggleButtonTrain.isChecked()) {
-          FdActivity.this.textState.setVisibility(0);
-          FdActivity.this.textState.setText(FdActivity.this.getResources().getString(2131099695));
-          FdActivity.this.buttonSearch.setVisibility(4);
-          FdActivity.this.textresult.setVisibility(8);
-          FdActivity.this.id.setVisibility(0);
-          FdActivity.this.text.setVisibility(0);
-          FdActivity.this.sex.setVisibility(0);
-          FdActivity.this.tel.setVisibility(0);
-          FdActivity.this.ivGreen.setVisibility(8);
-          FdActivity.this.ivYellow.setVisibility(8);
-          FdActivity.this.ivRed.setVisibility(8);
+          FdActivity.this.textState.setVisibility(View.VISIBLE);
+          FdActivity.this.textState.setText(FdActivity.this.getResources().getString(R.string.S));
+          FdActivity.this.buttonSearch.setVisibility(View.INVISIBLE);
+          FdActivity.this.textresult.setVisibility(View.GONE);
+          FdActivity.this.id.setVisibility(View.VISIBLE);
+          FdActivity.this.text.setVisibility(View.VISIBLE);
+          FdActivity.this.sex.setVisibility(View.VISIBLE);
+          FdActivity.this.tel.setVisibility(View.VISIBLE);
+          FdActivity.this.ivGreen.setVisibility(View.GONE);
+          FdActivity.this.ivYellow.setVisibility(View.GONE);
+          FdActivity.this.ivRed.setVisibility(View.GONE);
           if ((FdActivity.this.text.getText().toString().length() > 0) && (FdActivity.this.id.getText().toString().length() > 0) && (FdActivity.this.tel.getText().toString().length() > 0) && (FdActivity.this.sex.getText().toString().length() > 0)) {
-            FdActivity.this.toggleButtonGrabar.setVisibility(0);
+            FdActivity.this.toggleButtonGrabar.setVisibility(View.VISIBLE);
           }
           return;
         }
-        FdActivity.this.textState.setText(2131099705);
-        FdActivity.this.text.setVisibility(4);
-        FdActivity.this.buttonSearch.setVisibility(0);
+        FdActivity.this.textState.setText(R.string.STrain);
+        FdActivity.this.text.setVisibility(View.INVISIBLE);
+        FdActivity.this.buttonSearch.setVisibility(View.VISIBLE);
         FdActivity.this.textresult.setText("");
-        FdActivity.this.toggleButtonGrabar.setVisibility(4);
-        FdActivity.this.text.setVisibility(4);
-        FdActivity.this.id.setVisibility(4);
-        FdActivity.this.sex.setVisibility(4);
-        FdActivity.this.tel.setVisibility(4);
+        FdActivity.this.toggleButtonGrabar.setVisibility(View.INVISIBLE);
+        FdActivity.this.text.setVisibility(View.INVISIBLE);
+        FdActivity.this.id.setVisibility(View.INVISIBLE);
+        FdActivity.this.sex.setVisibility(View.INVISIBLE);
+        FdActivity.this.tel.setVisibility(View.INVISIBLE);
         Long localLong = Long.valueOf(System.nanoTime());
         FdActivity.this.fr.train(FdActivity.this.id.getText().toString(), FdActivity.this.sex.getText().toString(), FdActivity.this.tel.getText().toString());
         double d = (Long.valueOf(System.nanoTime()).longValue() - localLong.longValue()) / 1000000L;
@@ -524,7 +522,7 @@ public class FdActivity
       this.mFrontCam = paramMenu.add(getResources().getString(2131099692));
       return true;
     }
-    this.imCamera.setVisibility(4);
+    this.imCamera.setVisibility(View.INVISIBLE);
     return true;
   }
 
@@ -543,11 +541,12 @@ public class FdActivity
     }
     for (; ; ) {
       paramMenuItem.setChecked(true);
-      return true;
       if (paramMenuItem == this.mFrontCam) {
         this.mChooseCamera = 2;
         this.mOpenCvCameraView.setCamBack();
       }
+      return true;
+
     }
   }
 
@@ -608,7 +607,6 @@ public class FdActivity
 
     public abstract void didClick();
 
-    public abstract void didFailToShowAd(AdBuddizError paramAdBuddizError);
 
     public abstract void didHideAd();
 
